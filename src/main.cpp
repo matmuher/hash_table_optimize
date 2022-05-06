@@ -9,7 +9,7 @@ int main()
     #if 1
     // INPUT
     size_t words_num = 0;
-    const char* file_name = "Text/CrimeAndPunishment.txt";
+    const char* file_name = "Text/WhiteFang.txt";
     line_buf* words = get_strings(file_name, &words_num);
 
     hash_cell hash_table[HASH_TABLE_SIZE] = {}; 

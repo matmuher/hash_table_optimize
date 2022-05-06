@@ -6,7 +6,7 @@ void fill_hash_table    (line_buf* words, size_t words_num, hash_cell* hash_tabl
                         size_t (*hash_func)(const char*), const char* title)
 {
     printf("Start processing of %s!\n", title);
-    for (size_t word_id = 0; word_id < words_num; word_id++) 
+    for (size_t word_id = 0; word_id < words_num / 3; word_id++) 
     {
         printf("Processing word %lu/%lu\r", word_id, words_num);
         add_element_hash_table(hash_table, hash_func, words[word_id].beg_ptr);

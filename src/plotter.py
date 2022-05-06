@@ -10,10 +10,13 @@ if __name__ == '__main__':
 
 	data = collisions_num.to_numpy()
 	bin_num = len(np.unique(data))
+	bin_num = 1000
 
+	
+	#step = np.max(data) // 10
 	fig, ax = plt.subplots(figsize = (10,10))
-	plt.xticks(range(np.min(data), np.max(data) + 1, 1000))
-	ax.hist(data, bins = bin_num)
+	#plt.xticks(range(0, np.max(data) + 1, step))
+	ax.hist(data, bins = 'auto')
 	ax.set_title(f'{hash_function}')
-
+	plt.xscale('log')
 	plt.savefig(f'Plots/{hash_function}.svg', format = 'svg')
