@@ -6,6 +6,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hash_table
 
 all: $(SOURCES) $(EXECUTABLE)
+	./${EXECUTABLE}
 	
 $(EXECUTABLE): $(OBJECTS) 
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
@@ -13,8 +14,8 @@ $(EXECUTABLE): $(OBJECTS)
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
-leak_check: hash_table
-	valgrind --leak-check=yes ./hash_table
+leak_check: $(SOURCES) ${EXECUTABLE}
+	valgrind --leak-check=yes ./${EXECUTABLE}
 
 clean:
 	rm -rf *.o

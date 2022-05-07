@@ -16,49 +16,6 @@ int get_size (FILE* file_pointer)
     return file_size;
 }
 
-int is_eof (FILE* file_pointer)
-{
-    assert (file_pointer != NULL);
-
-    int cur_pos = ftell (file_pointer);
-    int file_size = get_size (file_pointer);
-
-    return cur_pos == file_size;
-}
-
-char* format_line (char* line, line_buf* line_ptrs)
-{
-    assert (line != NULL);
-    assert (line_ptrs != NULL);
-
-    // Skip non-al/num chars
-    int sym_id = 0;
-    while (!isalnum (line[sym_id])) {sym_id++;}
-
-    // Start with lowercase
-    //line[sym_id] = tolower (line[sym_id]);
-
-    // beg_ptr points to the first char in line
-    line_ptrs->beg_ptr = &line[sym_id];
-
-    // Stops when find zero or end of line
-    char* last_alnum = &line[sym_id];
-    while (line[++sym_id])
-        {
-        if (isalnum (line[sym_id]))
-            {
-            last_alnum = &line[sym_id];
-            }
-        }
-
-    // End of line — straightly after last al/num symbol
-    *++last_alnum = '\0';
-
-    line_ptrs->end_ptr = last_alnum;
-
-    return line_ptrs->beg_ptr;
-}
-
 int is_empty_line (const char* str)
 {
     assert (str != NULL);
@@ -107,23 +64,6 @@ char* read_to_buffer (const char* file_name, size_t* file_size)
 
     return buffer;
 }
-
-void write_line_buf_to_file (const char* file_name, int lines_num, const line_buf* line_ptrs)
-{
-    assert (file_name != NULL);
-    assert (lines_num > 0);
-    assert (line_ptrs != NULL);
-
-    FILE* file_writer = fopen (file_name, "w");
-
-    for (int cur_line = 0; cur_line < lines_num; cur_line++)
-        {
-        fputs ((line_ptrs + cur_line)->beg_ptr, file_writer);
-        putc ('\n', file_writer);
-        }
-
-    fclose (file_writer);
-    }
 
 void put_zeros (char* const buffer, size_t file_size)
     {
@@ -189,6 +129,10 @@ line_buf* get_strings (const char* file_name, size_t* lines_num)
 
         if (!is_empty_line (cur_pos))
             {
+            while (!isalnum(*cur_pos)) {cur_pos++;};
+
+            if (*cur_pos == '\0') continue;
+
             line_ptrs[cur_line].beg_ptr = cur_pos;
             line_ptrs[cur_line].end_ptr = str_end;
 
@@ -199,10 +143,4 @@ line_buf* get_strings (const char* file_name, size_t* lines_num)
         }
 
     return line_ptrs;
-}
-
-void print_line_buf (line_buf* text, size_t lines_num)
-{
-    for (size_t line_id = 0; line_id < lines_num; line_id++)
-        printf ("%s\n", text[line_id].beg_ptr);
 }

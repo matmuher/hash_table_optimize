@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
+from astropy.visualization import hist
 
 if __name__ == '__main__':
 	collisions_num = pd.read_csv("collisions_num.txt")
@@ -9,14 +10,17 @@ if __name__ == '__main__':
 	hash_function = collisions_num.columns[0]
 
 	data = collisions_num.to_numpy()
-	bin_num = len(np.unique(data))
-	bin_num = 1000
+	hash_table_size = data[0]
+	data = data[1:]
 
-	
-	#step = np.max(data) // 10
 	fig, ax = plt.subplots(figsize = (10,10))
-	#plt.xticks(range(0, np.max(data) + 1, step))
-	ax.hist(data, bins = 'auto')
-	ax.set_title(f'{hash_function}')
-	plt.xscale('log')
+
+	bins = len(np.unique(data))
+	ax.hist(data, bins = 'auto', density = False)
+
+	ax.set_title(f'Distribution: {hash_function}')
+	#plt.xscale('log')
+	ax.set_xlim(1, hash_table_size + 1)
+	ax.set_xlabel("Collisions for hash table's cell", fontsize = 20)
+	ax.set_yticks([])
 	plt.savefig(f'Plots/{hash_function}.svg', format = 'svg')
