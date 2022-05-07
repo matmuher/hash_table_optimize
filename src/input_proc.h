@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <assert.h>
+#include <stdint.h>
 
 /*!
 @brief struct that should contain pointers to begin and end of line
@@ -69,7 +70,7 @@ char* format_line (char* line, line_buf* line_ptrs);
 @brief Formats lines from line_buf structure object
        to ignore punctuation in the begin and in the end
 */
-line_buf* prepare_data (line_buf* line_ptrs, size_t lines_num);
+line_buf* prepare_data (line_buf* line_ptrs, uint32_t lines_num);
 
 /*!
 @brief Get lines_num lines from file, package it in line_buf structure object
@@ -84,23 +85,23 @@ line_buf* prepare_data (line_buf* line_ptrs, size_t lines_num);
 @params[out] lines_num number_of_lines
 @return pointer to line_buf structure object with written lines
 */
-line_buf* get_strings (const char* file_name, size_t* lines_num);
+line_buf* get_strings (const char* file_name, uint32_t* lines_num);
 
 /*!
 @brief Replace '\n' with '\0' in buffer
        Adds '\0' in the end
 */
-void put_zeros (char* const buffer, size_t file_size);
+void put_zeros (char* const buffer, uint32_t file_size);
 
 /*!
 @brief Count not empty lines
 */
-int count_correct_lines (char* const buffer, size_t file_size);
+int count_correct_lines (char* const buffer, uint32_t file_size);
 
 /*!
 @brief Prints lines from line_buf object
 */
-void print_line_buf (line_buf* text, size_t lines_num);
+void print_line_buf (line_buf* text, uint32_t lines_num);
 
 
 #endif // D_HAMLET_FUNCTIONS_H_INCLUDED

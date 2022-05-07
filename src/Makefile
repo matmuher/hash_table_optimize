@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.cpp hash_functions.cpp input_proc.cpp 
+SOURCES=main.cpp hash_table.cpp input_proc.cpp stress_test.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hash_table
 

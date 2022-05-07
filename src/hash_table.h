@@ -39,4 +39,7 @@ uint32_t check_sum_hash (const char* key);
 uint32_t ror_hash (const char* key);
 uint32_t pjw_hash (const char* key);
 
+// Stress test
+float stress_test_average (hash_table_t* ma_hash_table, line_buf* words, uint32_t words_num);
+
 #endif

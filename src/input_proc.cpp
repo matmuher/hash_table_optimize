@@ -4,7 +4,7 @@ int get_size (FILE* file_pointer)
 {
     assert (file_pointer != NULL);
 
-    size_t cur_pos = ftell (file_pointer);
+    uint32_t cur_pos = ftell (file_pointer);
 
     // Get size
     fseek (file_pointer, 0, SEEK_END);
@@ -35,7 +35,7 @@ int is_empty_line (const char* str)
     return !*str;
 }
 
-char* read_to_buffer (const char* file_name, size_t* file_size)
+char* read_to_buffer (const char* file_name, uint32_t* file_size)
 {
     assert (file_name != NULL);
     assert (*file_size > 0);
@@ -50,7 +50,7 @@ char* read_to_buffer (const char* file_name, size_t* file_size)
     buffer = (char*) calloc (*file_size, sizeof (*buffer));
 
     // Fill the buffer
-    size_t fread_return = fread (buffer, sizeof (*buffer), *file_size, file_pointer);
+    uint32_t fread_return = fread (buffer, sizeof (*buffer), *file_size, file_pointer);
 
     fclose (file_pointer);
 
@@ -65,7 +65,7 @@ char* read_to_buffer (const char* file_name, size_t* file_size)
     return buffer;
 }
 
-void put_zeros (char* const buffer, size_t file_size)
+void put_zeros (char* const buffer, uint32_t file_size)
     {
     assert (buffer != NULL);
     assert (file_size > 0);
@@ -83,13 +83,13 @@ void put_zeros (char* const buffer, size_t file_size)
     *(buffer + file_size) = '\0';
 }
 
-int count_correct_lines (char* const buffer, size_t file_size)
+int count_correct_lines (char* const buffer, uint32_t file_size)
 {
     assert (buffer != NULL);
     assert (file_size > 0);
 
     char* cur_pos = buffer;
-    size_t correct_lines = 0;
+    uint32_t correct_lines = 0;
 
     while (cur_pos < buffer + file_size)
         {
@@ -103,12 +103,12 @@ int count_correct_lines (char* const buffer, size_t file_size)
     return correct_lines;
 }
 
-line_buf* get_strings (const char* file_name, size_t* lines_num)
+line_buf* get_strings (const char* file_name, uint32_t* lines_num)
 {
     assert (file_name != NULL);
     assert (lines_num != NULL);
 
-    size_t file_size = -1;
+    uint32_t file_size = -1;
 
     char* buffer = read_to_buffer (file_name, &file_size);
 
@@ -121,7 +121,7 @@ line_buf* get_strings (const char* file_name, size_t* lines_num)
     line_ptrs = (line_buf*) calloc (*lines_num, sizeof (line_buf));
 
     char* cur_pos = buffer;
-    size_t cur_line = 0;
+    uint32_t cur_line = 0;
 
     while (cur_line < *lines_num)
         {
