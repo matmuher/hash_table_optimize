@@ -17,6 +17,8 @@ int main()
     printf ("[Average stress test passing time is %.2f]\n", aver_time);  
 
     hash_table_destruct(ma_hash_table);
+    free(words->buffer);
+    free(words);
 
     return 0;
 }

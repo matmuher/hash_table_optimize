@@ -24,6 +24,7 @@ void hash_table_destruct (hash_table_t* ma_hash_table)
 {
     free_hash_table_content(ma_hash_table);
     free(ma_hash_table->hash_table);
+    free(ma_hash_table);
 }
 
 void fill_hash_table (line_buf* words, uint32_t words_num, hash_table_t* ma_hash_table)

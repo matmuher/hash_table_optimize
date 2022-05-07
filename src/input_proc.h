@@ -12,6 +12,7 @@
 */
 struct line_buf
         {
+        char* buffer;
         char* beg_ptr;
         char* end_ptr;
         };

@@ -119,6 +119,7 @@ line_buf* get_strings (const char* file_name, uint32_t* lines_num)
     line_buf* line_ptrs = NULL;
 
     line_ptrs = (line_buf*) calloc (*lines_num, sizeof (line_buf));
+    line_ptrs->buffer = buffer;
 
     char* cur_pos = buffer;
     uint32_t cur_line = 0;

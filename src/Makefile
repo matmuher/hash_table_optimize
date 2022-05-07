@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -Wall
+CFLAGS=-g -c -Wall
 LDFLAGS=
 SOURCES=main.cpp hash_table.cpp input_proc.cpp stress_test.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -16,6 +16,9 @@ $(EXECUTABLE): $(OBJECTS)
 
 leak_check: $(SOURCES) ${EXECUTABLE}
 	valgrind --leak-check=yes ./${EXECUTABLE}
+
+stress_test: $(SOURCES) ${EXECUTABLE}
+	valgrind --tool=callgrind ./${EXECUTABLE}
 
 clean:
 	rm -rf *.o
