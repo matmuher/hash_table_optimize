@@ -1,6 +1,7 @@
 CC=g++
 CFLAGS=-g -c -Wall
 LDFLAGS=
+INCLUDE=Include/libaelf64.a
 SOURCES=main.cpp hash_table.cpp input_proc.cpp stress_test.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hash_table
@@ -9,7 +10,7 @@ all: $(SOURCES) $(EXECUTABLE)
 	./${EXECUTABLE}
 	
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) $(INCLUDE) -o $@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@

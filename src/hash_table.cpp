@@ -1,6 +1,8 @@
 #include "hash_table.h"
 #include <math.h>
 
+extern "C" int A_strcmp (const char * string1, const char * string2);
+
 // SERVICE FUNCTIONS
 void free_hash_table_content (hash_table_t* ma_hash_table);
 void count_collisions (hash_table_t* ma_hash_table, uint32_t* collisions_num);
