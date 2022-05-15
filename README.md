@@ -29,7 +29,8 @@ Part 2: Hotspots optimizations
 4. [Assembly while cycle](#4-while-cycle-assembly)
 
 [Conclusion for part 2](#conclusion)
-[ma_strlen_avx](#ps)
+
+[P.S: ma_strlen_avx](#ps)
 
 
 
