@@ -517,7 +517,7 @@ asm	(
 	);
 ```
 
-Stress results:
+Stress test results:
 
 |Compiler flag	|-O0|-O1|-O2|
 |---				|---|---|---|
