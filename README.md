@@ -52,7 +52,7 @@ Functions to explore:
 
 ### 1. Ones
 
-This plot shows collisions' distribution. It's expected that all collisions belongs to 1st cell.
+This plot shows collisions' distribution. It's expected that all collisions belong to the 1st cell.
 
 <img src="Plots/ones.svg" 
         alt="Picture" 
@@ -219,7 +219,7 @@ In this table:
 
 * Average size stands for average size of not empty cell.
 * Dispersion is also belongs to not empty cells
-* Filling coefficient is computed so: $Filling~ coefficient~ =~ \frac{N(cells~ with~ content)}{hash~ table~ size}$
+* Filling coefficient is computed so: Filling coefficient = (number of cells with content) / (hash table size) 
 
 Due to this statistic **Rol hash is the best hash function among mentioned ones**. *But frankly speaking according to plots it seems that pjw is more uniform, but I don't how to prove it with computations...*
 
@@ -229,7 +229,7 @@ Use case is searching in hash table. So to measure optimizations' effect followi
 
 ### Stress test
 
-We will **search every word** from [English dictionary](english2.txt) **1000 times**. To decrease influence of random errors test will be done 5 times. There are about 65,000 words in the dictionary.
+We will **search every word** from [English dictionary](Text/english2.txt) **1000 times**. To decrease influence of random errors test will be done 5 times. There are about 65,000 words in the dictionary.
 
 ### 0. No optimizations
 
@@ -339,7 +339,7 @@ Thus, next step would be:
 
 #### 2.1 Separate compiled assembled hash function
 
-Lets' assemble hash function. That's its assembled code:
+Lets' assembly hash function. That's its assembled code:
 
 ```
 ;	[ROL_HASH]
