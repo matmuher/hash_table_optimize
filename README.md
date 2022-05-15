@@ -292,7 +292,7 @@ Boost:
 
 Let's again explore hotspots:
 
- <img src="avx_strcmp.png" 
+ <img src="Screenshots/avx_strcmp.png" 
         alt="Picture" 
         width="500" 
         height="300" 
