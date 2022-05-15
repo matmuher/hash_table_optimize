@@ -5,6 +5,33 @@ This project consists of two parts:
 1. Hash functions comparison
 2. Hash table low-level optimize
 
+Content:
+
+Part 1: Hash functions comparison
+
+1. [Always ones](https://github.com/matmuher/hash_table_optimize#1-ones)
+2. [String length](https://github.com/matmuher/hash_table_optimize#2-length)
+3. [First letter ASCII code](https://github.com/matmuher/hash_table_optimize#3-first-letter-ascii)
+4. [Check sum](#4-check-sum)
+5. [Rol hash]()
+6. [PJW hash]()
+
+[Conclusion for part 1]()
+
+Part 2: Hotspots optimizations
+
+0. [No optimizations]()
+1. [SIMD strings comparison]()
+2. [Assembly hash function]()
+	2.1 [Separate compilation]()
+	2.2 [Inline asm]()
+3. [Modulo replacement]()
+4. [Assembly while cycle]()
+
+[Conclusion for part 2]()
+
+
+
 ## PART 1: Hash functions comparison
 
 We will compare hash functions to use one of them in hash table. So we will examine them for **density of filling the hash table**.
@@ -15,7 +42,7 @@ Functions to explore:
 2. First letter ASCII
 3. Length
 4. Check sum (returns sum of word letters' ASCII-codes)
-5. [Rol hash]()
+5. [Rol hash](https://github.com/matmuher/hash_table_optimize#6-rol-hash)
 6. [PjwHash](https://en.wikipedia.org/wiki/PJW_hash_function)
 
 ### 1. Ones
@@ -139,8 +166,8 @@ According to the plot this hash table is filled respectively uniformly:
         width="600" 
         height="600" 
         style="display: block; margin: auto" />
- 
- ### 6. Rol hash
+ [6]:
+### 6. Rol hash
  
  Its code:
 ```
