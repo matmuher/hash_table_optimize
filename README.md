@@ -244,11 +244,12 @@ So without any optimizations we have such results:
 
 ### Tools to determine hotspots
 
-To determine hotspots **callgrind** ([vallgrind](https://valgrind.org/docs/manual/cl-manual.html)'s tool) and [**kcachegrind**](http://kcachegrind.sourceforge.net/html/Home.html) (for checking callgrind generated data) is used. 
+To determine hotspots **callgrind** ([vallgrind](https://valgrind.org/docs/manual/cl-manual.html)'s tool) and [**kcachegrind**](http://kcachegrind.sourceforge.net/html/Home.html) (for checking callgrind generated data) are used. 
 
-Let's check its report for non optimized version:
+Let's check callgrind's report for non optimized hash table:
 
 *(Don't be afraid of 'ror_hash'. It's still 'rol_hash', I periodically have a mess with right and left after good vacation)*
+
  <img src="Screenshots/cg_nonopt.png" 
         alt="Picture" 
         width="500" 
@@ -259,7 +260,7 @@ Most number of calls belongs to string comparison. So that is what our the first
 
 ### 1. SIMD string comparison
 
-To boost comparison AVX and AVX2 intrinsics will be used. We will cast strings to __m256i data types so that we can compare two words without iterations. As well that means that we will process only words with length <= 31. This constraint is price of speed. *But indeed we don't have much of them in our language* : )
+To boost comparison AVX and AVX2 intrinsics will be used. We will cast strings to __m256i data types so that we can compare any two words with 3 instructions. As well that means that we will process only words with length <= 31. This constraint is price of speed. *But indeed we don't have much of so long words in dictionary* : )
 
 ```
 hash_cell* search_in_hash_table (hash_table_t* ma_hash_table, const char* key)
@@ -327,7 +328,7 @@ Let's again explore hotspots:
         height="300" 
         style="display: block; margin: auto" />
 
-We can see cost that belongs to ror_hash increased. It's all okay, because as we've seen total cost decreased But as we did not do anything with hash function, its cost remained without changes. So its time contribution percentage increased. 
+We can see cost that belongs to ror_hash increased. It's all okay, because as we've seen total cost decreased. But as we did not do anything with hash function, its cost remained without changes. So its time contribution percentage increased. 
 
 Thus, next step would be:
 
@@ -335,7 +336,7 @@ Thus, next step would be:
 
 #### 2.1 Separate compiled assembled hash function
 
-Lets' assemble hash function. That's its code:
+Lets' assemble hash function. That's its assembled code:
 
 ```
 ;	[ROL_HASH]
@@ -362,7 +363,7 @@ A_rol_hash:
 ```
 
         
-Moreover when defining hash function in hash_table.h I used `__attribute__ ((naked))` to avoid automatically creating of prologue and epilogue (to avoid using of stack).
+Moreover when defining hash function in hash_table.h we can use `__attribute__ ((naked))` to avoid automatically creating of prologue and epilogue (avoid using of stack).
 
 Stress test results:
 
@@ -429,7 +430,7 @@ Boost:
 
 Seems better!
 
-And in callgrind report we get one big function that grabs all time:
+And in callgrind report we get one big function that grabs all costs:
 
  <img src="Screenshots/cg_asm_hash.png" 
         alt="Picture" 
@@ -454,7 +455,7 @@ Modulo is expensive operation. We should pay attention to this line:
 
 ```hash_index = hash_index % (ma_hash_table->HASH_TABLE_SIZE); ``` 
 
-Now let's remember that hash table's size is $4096 = 2^{12}$. Thus for modulo we can use 'and' instruction with $mask = 4096 - 1~ (in~ decimal)= 111 1111 1111 1111~ (in ~ binary)$. 
+Now let's remember that hash table's size is $4096 = 2^{12}$. Thus for modulo we can use 'and' instruction with `mask = 4096 - 1 (in decimal)= 111 1111 1111 1111 (in binary)`. 
 
 ```
 asm 	(
@@ -483,9 +484,11 @@ Boost:
 * -O1: 1.25 times
 * -O2: 1.18 times
 
-Oh, fuck. Incredible result.  
+Fine! We still did not do anything with while cycle of searching in list. Let's try to do something with it.
 
 ### 4. While cycle assembly 
+
+We can rewrite it with GCC Extended Asm:
 
 ```
 asm	(
@@ -514,6 +517,8 @@ asm	(
 	);
 ```
 
+Stress results:
+
 |Compiler flag	|-O0|-O1|-O2|
 |---				|---|---|---|
 |Test 0			|4.05|2.27|3.14|
@@ -529,7 +534,7 @@ Boost:
 * -O1: 1.15 times
 * -O2: 0.86 times (anti boost!)
 
-Okay, we now have got decrease in performance and just have a look at our search function. How ugly and non-portable it is!:
+Okay, we now have got decrease in performance and just have a look at our search function. How ugly and non-portable it is!
 
  <img src="Screenshots/ugly_search.png" 
         alt="Picture" 
