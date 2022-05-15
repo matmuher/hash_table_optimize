@@ -9,26 +9,27 @@ Content:
 
 Part 1: Hash functions comparison
 
-1. [Always ones](https://github.com/matmuher/hash_table_optimize#1-ones)
-2. [String length](https://github.com/matmuher/hash_table_optimize#2-length)
-3. [First letter ASCII code](https://github.com/matmuher/hash_table_optimize#3-first-letter-ascii)
+1. [Always ones](#1-ones)
+2. [String length](#2-length)
+3. [First letter ASCII code](#3-first-letter-ascii)
 4. [Check sum](#4-check-sum)
-5. [Rol hash]()
-6. [PJW hash]()
+5. [PJW hash](#5-pjw-hash)
+6. [Rol hash](#6-rol-hash)
 
-[Conclusion for part 1]()
+[Conclusion for part 1](#conclusion-for-part-1)
 
 Part 2: Hotspots optimizations
 
-0. [No optimizations]()
-1. [SIMD strings comparison]()
-2. [Assembly hash function]()
-	2.1 [Separate compilation]()
-	2.2 [Inline asm]()
-3. [Modulo replacement]()
-4. [Assembly while cycle]()
+0. [No optimizations](#0-no-optimizations)
+1. [SIMD strings comparison](#1-simd-string-comparison)
+2. [Assembly hash function](#2-assembly-hash-function)
+	2.1 [Separate compilation](#21-separate-compiled-assembled-hash-function)
+	2.2 [Inline asm](#22-gcc-inline-asm-extended-asm)
+3. [Modulo replacement](3-from--to-and)
+4. [Assembly while cycle](#4-while-cycle-assembly)
 
-[Conclusion for part 2]()
+[Conclusion for part 2](#conclusion)
+[ma_strlen_avx](#ps)
 
 
 
