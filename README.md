@@ -23,8 +23,11 @@ Part 2: Hotspots optimizations
 0. [No optimizations](#0-no-optimizations)
 1. [SIMD strings comparison](#1-simd-string-comparison)
 2. [Assembly hash function](#2-assembly-hash-function)
+
 	2.1 [Separate compilation](#21-separate-compiled-assembled-hash-function)
+	
 	2.2 [Inline asm](#22-gcc-inline-asm-extended-asm)
+
 3. [Modulo replacement](3-from--to-and)
 4. [Assembly while cycle](#4-while-cycle-assembly)
 

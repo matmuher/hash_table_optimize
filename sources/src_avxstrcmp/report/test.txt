@@ -1,0 +1,78 @@
+0:
+
+Test 0: 10.98
+Test 1: 11.24
+Test 2: 10.92
+Test 3: 10.92
+Test 4: 10.91
+Test 5: 10.93
+Test 6: 10.96
+Test 7: 10.90
+Test 8: 10.91
+Test 9: 10.93
+Test 10: 10.94
+Test 11: 10.95
+Test 12: 10.93
+Test 13: 10.94
+Test 14: 10.95
+Test 15: 10.95
+Test 16: 10.94
+Test 17: 11.00
+Test 18: 10.94
+Test 19: 10.93
+[Average stress test passing time is 10.95]
+
+
+
+1:
+
+Test 0: 11.43
+Test 1: 11.06
+Test 2: 11.04
+Test 3: 11.06
+Test 4: 11.04
+Test 5: 11.05
+Test 6: 11.19
+Test 7: 11.04
+Test 8: 11.06
+Test 9: 11.05
+Test 10: 11.05
+Test 11: 11.04
+Test 12: 11.07
+Test 13: 11.04
+Test 14: 11.04
+Test 15: 11.04
+Test 16: 11.05
+Test 17: 11.04
+Test 18: 11.06
+Test 19: 11.04
+[Average stress test passing time is 11.07]
+
+2: [AVX cmp]
+
+Test 0: 10.24
+Test 1: 10.21
+Test 2: 10.25
+Test 3: 10.21
+Test 4: 10.30
+Test 5: 10.29
+Test 6: 10.25
+Test 7: 10.23
+Test 8: 10.20
+Test 9: 10.22
+Test 10: 10.19
+Test 11: 10.21
+Test 12: 10.18
+Test 13: 10.21
+Test 14: 10.18
+Test 15: 10.19
+Test 16: 10.18
+Test 17: 10.21
+Test 18: 10.20
+Test 19: 10.22
+[Average stress test passing time is 10.22]
+
+
+
+
+
