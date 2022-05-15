@@ -28,7 +28,7 @@ Part 2: Hotspots optimizations
 	
 	2.2 [Inline asm](#22-gcc-inline-asm-extended-asm)
 
-3. [Modulo replacement](3-from--to-and)
+3. [Modulo replacement](#3-from--to-and)
 4. [Assembly while cycle](#4-while-cycle-assembly)
 
 [Conclusion for part 2](#conclusion)
