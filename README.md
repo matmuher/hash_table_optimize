@@ -221,8 +221,7 @@ In this table:
 * Dispersion is also belongs to not empty cells
 * Filling coefficient is computed so: Filling coefficient = (number of cells with content) / (hash table size) 
 
-Due to this statistic **Rol hash is the best hash function among mentioned ones**. *But frankly speaking according to plots it seems that pjw is more uniform, but I don't how to prove it with computations...*
-
+Due to this statistic **Rol hash is the best hash function among mentioned ones**.
 ## PART 2: Hotspots optimizations
 
 Use case is searching in hash table. So to measure optimizations' effect following stress test will be used:
