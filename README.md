@@ -171,7 +171,7 @@ According to the plot this hash table is filled respectively uniformly:
         width="600" 
         height="600" 
         style="display: block; margin: auto" />
- [6]:
+
 ### 6. Rol hash
  
  Its code:
